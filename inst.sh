@@ -1,0 +1,20 @@
+#!/bin/bash
+make -f binom.mak
+make -f ekisschi.mak
+make -f ekissdots.mak
+make -f ekissgen.mak
+make -f ranwlk.mak
+make -f ekissnorm.mak
+make -f ekisspat.mak
+make -f ekissraw.mak
+make -f ekisstim.mak
+make -f mcbell.mak
+make -f mccos.mak
+make -f mcparab.mak
+make -f mcpi.mak
+make -f mcsin.mak
+make -f mcsph.mak
+make -f poischi.mak
+make -f pwrball.mak
+make -f tstekiss.mak
+make -f uintchi.mak

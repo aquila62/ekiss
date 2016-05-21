@@ -1,0 +1,21 @@
+Installing ekiss:
+
+Make shell scripts executable.
+
+chmod 755 *.sh
+
+Next compile the programs.
+
+./inst.sh
+
+To de-install ekiss:
+
+./deinst.sh
+
+To see how to test ekiss, read TESTING.
+Some of these test programs use new curses, X Windows,
+and dieharder.
+
+To read about the ekiss generator, read README.ekiss.
+
+To see the ekiss website, go to https://aquila62.github.io 

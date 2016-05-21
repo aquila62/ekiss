@@ -1,0 +1,128 @@
+ekiss is a random number generator (RNG) that produces unsigned
+integers in a uniform distribution.  ekiss is based on 1024 32-bit
+states.  ekiss uses these 1024 states to perform a Bays-Durham shuffle.
+The 'e' in "ekiss" means "extended KISS", because the period length
+of ekiss is much longer than the original KISS algorithm, created
+by the late Professor George Marsaglia.
+
+The period length of ekiss is so long that it can never be tested.
+Because of the Bays-Durham shuffle, the period length is theoretically
+5.42e+2639, or the factorial of 1024.
+
+Test results.
+
+The ekiss random number generator has tested successfully in the
+following tests.
+
+    dieharder -a
+    TestU01 Crush
+    National Institute of Standards and Technology STS test suite.
+
+The dieharder test yielded no weak p-values and no fails.
+
+The TestU01 Crush test yielded no fails.
+
+Most of the STS tests are easy to pass, and so passing them does
+not validate a generator to any great degree.  Nevertheless,
+ekiss passed the STS suite of tests, especially the harder tests.
+TestU01 incorporates the STS suite of tests into its own Crush
+suite.  Dieharder incorporates George Marsaglia's original diehard
+suite of tests.
+
+Benchmarking.
+
+The benchmarking program counts the number of ticks taken to call
+the random number generator one hundred million times.  ekiss
+performs about one sixth faster than the taus2 and Mersenne Twister
+generators in the GNU Scientific Library (GSL).
+
+When testing ekiss as input to dieharder -g 200, be cautioned
+that the raw input feature of dieharder slows down the test.
+It is better to integrate ekiss into dieharder as an internal
+random number generator in the 600 series of generators.
+
+The same is true with TestU01.  It is better to integrate ekiss
+as an internal random number generator in order to speed up the
+test.
+
+When fed as raw input to dieharder through a pipe, the ekiss
+generator consumes about 20% of the CPU, while dieharder consumes
+about 70%.
+
+Initialization.
+
+Initialize the 1024 states in ekiss to non-zero random or arbitrary
+values.  That amounts to initializing ekiss to more than 4000 bytes
+of data.
+
+If you wish, you may override the initial values of the state array,
+so that you may conduct regression tests. You will also have to
+initialize the four kiss states, the two previous outputs, and the
+current output to arbitrary values.
+
+All of the ekiss states are available to the programmer through a
+public structure.  See ekiss.h for the structure.
+
+Distributed processing.
+
+ekiss is conducive to running on a Beowulf style of supercomputer.
+Each of its 1024 states may be manipulated independently in separate
+nodes of the supercomputer.  The one bottle neck occurs during the
+Bays-Durham shuffle, when the state array is being changed.
+I see no reason why ekiss could not keep pace with the fastest
+supercomputer in a scientific experiment.
+
+Supporting subroutines.
+
+The ekiss generator has four subroutines that depend on it.
+The calling program is responsible for passing valid parameters.
+Each subroutine may be called billions of times in a scientific
+experiment.  Validation in the subroutine would be redundant
+in most cases.
+
+ekissunif.c produces a uniform random number from 0 - 1.  Its only
+parameter is the ekiss structure.
+
+ekissint.c produces a uniform random integer from 0 up to a limit.
+It has two parameters, the ekiss structure, and the limit.  The
+limit may be negative or positive.
+
+ekisspwr.c produces an unsigned integer of 1 to 32 bits.  It has
+two parameters, the ekiss structure, and the number of bits.
+
+ekissbit.c produces a boolean integer (0 or 1).    Its only
+parameter is the ekiss structure.
+
+Utilities.
+
+ekissgen.c produces an ASCII stream of ones and zeros to stdout.
+
+ekissraw.c feeds random binary data into down stream programs,
+such as dieharder or TestU01 test programs..
+
+Porting to Mingw.
+
+ekiss is easy to port to Mingw on Windows 10.  The make files have
+to conform to Windows EXE format.  ekissinit.c has to be changed
+slightly.  The date/time routine is different in Mingw, and the
+clock routine is not used.  Therefore the four states for the
+kiss algorithm need four permutations of the same date and time.
+
+The Monte Carlo test programs have to change because they compare
+results with GNU Scientific Library random number generators. Under
+Mingw, the ekiss integral is only compared with the mathematical
+solution.  Timings based on clock ticks are eliminated from the
+program.
+
+ekisstim.c needs to be eliminated from the test suite.  Clock ticks
+are not reliable in Mingw.
+
+poischi.c needs a small change under Mingw.  The valid range for
+the chi square should come from a table, rather than from a GSL
+subroutine.  The chi square range varies, depending on the value
+of lambda.
+
+Read INSTALL for installing ekiss.
+Read TESTING for running tests in this repository.
+
+The website for ekiss is at https://aquila62.github.io.
