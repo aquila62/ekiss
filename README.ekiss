@@ -1,13 +1,33 @@
-ekiss is a random number generator (RNG) that produces unsigned
+ekiss is a random number generator (RNG) that produces 32-bit unsigned
 integers in a uniform distribution.  ekiss is based on 1024 32-bit
 states.  ekiss uses these 1024 states to perform a Bays-Durham shuffle.
 The 'e' in "ekiss" means "extended KISS", because the period length
 of ekiss is much longer than the original KISS algorithm, created
 by the late Professor George Marsaglia.
 
-The period length of ekiss is so long that it can never be tested.
-Because of the Bays-Durham shuffle, the period length is theoretically
-5.42e+2639, or the factorial of 1024.
+Period length of ekiss.
+
+The period length of ekiss is based on the random number generator
+state.  In the case of ekiss, the random number generator state is
+three generations of output, plus an array of 1024 states used by
+the Bays-Durham shuffle, plus the four states used by the KISS
+algorithm.
+
+The period length is the number of generations it takes before
+every output of the random number generator is repeated in sequence
+for the same number of generations.
+
+Because of the Bays-Durham shuffle, the period length of ekiss is
+theoretically 5.41e+2639, or the factorial of 1024.  The period
+length is so long that it can not be demonstrated on the strongest
+super-computer in existence today.
+
+One way to test the period length is to build a database, where the
+key is two successive overlapping generations of ekiss output.  If
+there are no duplicate keys after hundreds of trillions of generations,
+then the period length is at least as long as the test.  If the test
+fails, then increase the size of the key to three successive overlapping
+generations of ekiss output, and rerun the test.
 
 Test results.
 
