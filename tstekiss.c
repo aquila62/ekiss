@@ -18,6 +18,7 @@
    /* Boston, MA 02111-1307, USA. */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "ekiss.h"
 
 /***************************************************/
@@ -37,5 +38,7 @@ int main(void)
       printf("%d", j);     /* print random bit */
       } /* for each bit generated */
    printf("\n");      /* end of line at end of loop */
+   free(kk->state);
+   free(kk);
    return(0);         /* normal eoj */
    } /* main */

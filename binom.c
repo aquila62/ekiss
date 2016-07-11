@@ -29,6 +29,7 @@
 /* by calling ekissbit()                                    */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "ekiss.h"
 
 int main()
@@ -113,5 +114,7 @@ int main()
    printf("Degrees of freedom 16\n");
    printf("95%c of the time, the chi square is "
       "between 6.908 and 28.845\n", '%');
+   free(kk->state);
+   free(kk);
    return(0);
    } /* main */

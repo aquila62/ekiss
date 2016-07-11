@@ -239,6 +239,7 @@ int main(void)
       XDrawPoint(xx->dpy,xx->w,xx->gc,x,y);
       ifkey(xx);
       } /* while runflg != 0 */
+   XFreeGC(xx->dpy,xx->gc);
    XDestroyWindow(xx->dpy,xx->w);
    XCloseDisplay(xx->dpy);
    free(kk->state);
