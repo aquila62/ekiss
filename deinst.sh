@@ -1,5 +1,6 @@
 #!/bin/bash
 make -f binom.mak clean
+make -f captcha.mak clean
 make -f ekisschi.mak clean
 make -f ekissdots.mak clean
 make -f ekissgen.mak clean
@@ -18,3 +19,4 @@ make -f poischi.mak clean
 make -f pwrball.mak clean
 make -f tstekiss.mak clean
 make -f uintchi.mak clean
+rm -f pic.png

@@ -1,5 +1,6 @@
 #!/bin/bash
 make -f binom.mak
+make -f captcha.mak
 make -f ekisschi.mak
 make -f ekissdots.mak
 make -f ekissgen.mak

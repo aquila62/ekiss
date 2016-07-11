@@ -181,14 +181,14 @@ as input a test.
 
 ------------------------------------------------------
 
-Test ekissint() by running tstpat.
+Test ekissint() by running ekisspat.
 This test requires the new curses package.
 
 sudo apt-get install libncurses-dev
 
-./tstnc
+./ekisspat
 
-The output from tstnc is a random pattern of ASCII characters
+The output from ekisspat is a random pattern of ASCII characters
 on a curses screen.  To quit press 'q'.
 
 ------------------------------------------------------
@@ -212,6 +212,21 @@ This test requires X Windows.  See sudo apt-get above.
 
 The output from tstwlksh is a random walk relative to a midpoint
 line on an X Windows screen.  To quit press any key.
+
+------------------------------------------------------
+
+Captcha generator with random background and partially
+random text colors.
+
+Requires the Netpbm package.
+
+sudo apt-get netpbm
+
+Usage:
+
+echo "text" | captcha | pnmtopng >mycaptcha.png
+
+Uses font.txt 12x24 font file.
 
 ------------------------------------------------------
 
