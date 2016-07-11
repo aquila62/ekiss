@@ -29,7 +29,7 @@ CC=gcc
 
 CFLAGS=-c -Wall -O2 -I/usr/X11R6/include/X11
 
-LDFLAGS=-L/usr/X11R6/lib -lX11 # -lm
+LDFLAGS=-L/usr/X11R6/lib -lX11
 
 ekissdots:			$(OBJ)
 		$(CC) -Wall -O2 $(OBJ) -o ekissdots $(LDFLAGS)

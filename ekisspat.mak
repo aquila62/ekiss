@@ -34,7 +34,7 @@ CC=gcc
 
 CFLAGS=-c -Wall -O2
 
-LDFLAGS=-lncurses -lm
+LDFLAGS=-lncurses
 
 ekisspat:		$(OBJ)
 	$(CC) -Wall -O2 $(OBJ) -o ekisspat $(LDFLAGS)

@@ -29,7 +29,7 @@ CC=gcc
 
 CFLAGS=-c -Wall -O2
 
-LDFLAGS=-L/usr/lib/i386-linux-gnu -lX11 -lm
+LDFLAGS=-L/usr/lib/i386-linux-gnu -lX11
 
 ranwlk:				$(OBJ)
 		$(CC) -Wall -O2 $(OBJ) -o ranwlk $(LDFLAGS)

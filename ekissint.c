@@ -39,6 +39,6 @@ int ekissint(kissfmt *kk, int limit)
    num = (double) ekiss(kk) / MAXINT;   /* generate random number 0-1 */
    /* multiply num by the limit and truncate */ 
    /* this produces an integer from zero up to the limit */
-   intgr = (int) floor(num * (double) limit);
+   intgr = (int) (num * (double) limit);
    return(intgr);           /* return the signed integer */
    } /* ekissint */
