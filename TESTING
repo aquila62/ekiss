@@ -293,20 +293,33 @@ with some strong and varied tests.
 ------------------------------------------------------
 
 Test an encryption program using the ekiss random
-number generator.
+number generator to encrypt data.
+
+The following test does double encryption to obtain the
+original stream of data.
+
+Usage:
+
+tstencr.sh filename password
+
+Example:
+
+tstencr.sh /vmlinuz abcdef
+
+The output shows two identical md5sum strings.
+
+----
+
 Use an alpha text generator for testing the encryption.
 The encryption algorithm is validated with two dieharder
 tests.  The first test passes with encryption.  The second
 test fails without encryption.
 
-Usage for testing without dieharder:
+The following test proves that a non-random plain text file
+can be enhanced with encryption to pass statistical
+tests for randomness.
 
-genalfa alphabet | ekissencr password | hexdump -C | less
-
-The output is random binary data that is displayed in
-a hexadecimal dump format.
-
-Usage for the dieharder test with encryption:
+Usage:
 
 tstdiee.sh alphabet password
 
@@ -319,7 +332,14 @@ The output is a dieharder summary report.
 It should show mostly successes with only a couple
 of WEAK results.
 
-Usage for the dieharder test of alfagen without encryption:
+This is a long running test.  Press CTL-C to interrupt it.
+
+----
+
+This test shows that a plain text stream of data fails
+a battery of tests for randomness.
+
+Usage:
 
 tstdiea.sh alphabet
 
@@ -332,6 +352,8 @@ tstdiee.sh 0123456789
 
 The output is a dieharder summary report.  It should show
 almost all failures.
+
+This is a long running test.  Press CTL-C to interrupt it.
 
 ------------------------------------------------------
 
