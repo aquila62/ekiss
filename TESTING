@@ -230,6 +230,26 @@ Uses font.txt 12x24 font file.
 
 ------------------------------------------------------
 
+Generate a stream of random DNA base pairs.
+Display the DNA base pairs as parallel strands.
+
+Usage:
+
+gendna | pair | less
+
+The output looks like:
+
+AGAAAGAGCAAGGATGAAAACGCGTATATTAGTGAGAATCTGGTACGTGTTTCGGTACGCGTTCCCAAGAGG
+TCTTTCTCGTTCCTACTTTTGCGCATATAATCACTCTTAGACCATGCACAAAGCCATGCGCAAGGGTTCTCC
+--------
+TAGTTGGTGCTAATGGCTACCATAATATATTGTTGTTCTGCCGGTAGATATCCCCGCTGCCGGGCCTGCGCG
+ATCAACCACGATTACCGATGGTATTATATAACAACAAGACGGCCATCTATAGGGGCGACGGCCCGGACGCGC
+--------
+
+A pairs with T, G pairs with C, etc.
+
+------------------------------------------------------
+
 Random Powerball Simulation:  pwrball
 pwrball is a random lottery game based on real odds
 and real pay-outs.  The jackpot is $1 Billion.
@@ -272,5 +292,51 @@ with some strong and varied tests.
 
 ------------------------------------------------------
 
+Test an encryption program using the ekiss random
+number generator.
+Use an alpha text generator for testing the encryption.
+The encryption algorithm is validated with two dieharder
+tests.  The first test passes with encryption.  The second
+test fails without encryption.
+
+Usage for testing without dieharder:
+
+genalfa alphabet | ekissencr password | hexdump -C | less
+
+The output is random binary data that is displayed in
+a hexadecimal dump format.
+
+Usage for the dieharder test with encryption:
+
+tstdiee.sh alphabet password
+
+Examples:
+
+tstdiee.sh "abc" "defghi"
+tstdiee.sh abc defghi
+
+The output is a dieharder summary report.
+It should show mostly successes with only a couple
+of WEAK results.
+
+Usage for the dieharder test of alfagen without encryption:
+
+tstdiea.sh alphabet
+
+Examples:
+
+tstdiee.sh "abc"
+tstdiee.sh abc
+tstdiee.sh abcdefghijklmnopqrstuvwxyz
+tstdiee.sh 0123456789
+
+The output is a dieharder summary report.  It should show
+almost all failures.
+
+------------------------------------------------------
+
+Read README.ekiss for general information about the ekiss
+random number generator.
+Read INSTALL for installing the ekiss package.
 The website for ekiss is at https://aquila62.github.io.
 
