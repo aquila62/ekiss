@@ -163,12 +163,20 @@ number of degrees of freedom based on lambda.
 ------------------------------------------------------
 
 The Anderson-Darling test for a normal distribution is
-not included in this repository, because it requires a
-statistical package, like R and the nortest library.
-In my own testing, ekissnorm has passed the Anderson-
-Darling test in the R package.  Input to the test was
-a Gaussian distribution created by the Box-Muller transform.
-ekissnorm.c produces numbers in the normal distribution.
+included only as an example in this repository, because
+it requires a statistical package, like R and the nortest
+library.
+
+To test ekissnorm, run the script tstnorm.sh.
+
+Usage:
+
+./tstnorm.sh
+
+Program ekissnorm generates data in a normal distribution
+using the Box-Muller transform.
+
+The following is the syntax for program ekissnorm.
 
 Usage:
 ./ekissnorm mean stdev size
@@ -177,7 +185,7 @@ Example:
 ./ekissnorm 15.0 2.0 5000
 
 The R package requires an upper limit of 5000 numbers
-as input a test.
+as input to a test.
 
 ------------------------------------------------------
 
@@ -210,8 +218,8 @@ This test requires X Windows.  See sudo apt-get above.
 
 ./tstwlk.sh
 
-The output from tstwlksh is a random walk relative to a midpoint
-line on an X Windows screen.  To quit press any key.
+The output from tstwlk.sh is a random walk relative to a
+midpoint line on an X Windows screen.  To quit press any key.
 
 ------------------------------------------------------
 
@@ -277,7 +285,7 @@ into a down stream test suite.
 
 The output from tstdie.sh is a statistical report.
 This is a long running test.  To interrupt press CTRL-C.
-The first test takes half minute to print a report.
+The first test takes a half minute to print a report.
 
 ------------------------------------------------------
 
