@@ -24,3 +24,4 @@ make -f ranwlk.mak clean
 make -f tstekiss.mak clean
 make -f uintchi.mak clean
 rm -f pic.png
+rm -f rwxf
