@@ -1,15 +1,36 @@
 The visual and amusement tests, included here, do not occur
 in dieharder or TestU01.  Dieharder and TestU01 are statistical
-test suites.  To test etaus with dieharder or TestU01, feed
-the output from etausraw into those test suites.
+test suites.  To test ekiss with dieharder or TestU01, feed
+the output from ekissraw into those test suites.
 
 ------------------------------------------------------
 
-Test etaus by running tstetaus.  There are no parameters.
+Run qmatch to verify the period length of the ekiss
+random number generator.  There is no parameter.
 
-./tstetaus
+./qmatch
 
-The output from tstetaus is a block of 1000 random zeros
+Press 'q' to quit.
+
+The output of qmatch is the number of random number generator
+cycles processed in billions of cycles, and the number of
+matches of the current list of outputs to the original list
+of outputs.  Each list of outputs, the original and the
+current list, are placed in separate FIFO queues of 1024
+outputs.  All 1024 outputs in each queue are compared until
+a mismatch occurs, and then the next cycle is processed.
+A match occurs when the ekiss random number generator wraps
+around and repeats.  The period length of ekiss is the
+factorial of 1024, or 5.41e+2639.  The two queues should
+never match during the remaining life of the Universe.
+
+------------------------------------------------------
+
+Test ekiss by running tstekiss.  There are no parameters.
+
+./tstekiss
+
+The output from tstekiss is a block of 1000 random zeros
 and ones.
 
 ------------------------------------------------------
@@ -17,17 +38,17 @@ and ones.
 Uniform distribution chi square test.
 There are no parameters.
 
-./etauschi
+./ekisschi
 
-The output from etauschi is a chi square of 65536
+The output from ekisschi is a chi square of 65536
 4-bit samples.  The number of degrees of freedom is 15.
 The chi square is computed for 4 bits as output from
-etauspwr().
+ekisspwr().
 
 ------------------------------------------------------
 
 Second uniform distribution chi square test.
-The unsigned integer from etaus() is tested in
+The unsigned integer from ekiss() is tested in
 4-bit groups.
      Bits
     29-32
@@ -58,9 +79,9 @@ There are no parameters.
 The output from mcpi is an approximation of Pi/4
 based on a Monte Carlo simulation of a quarter circle
 in a unit square.  The formula is x^2 + y^2 < 1.
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/10 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -72,9 +93,9 @@ There are no parameters.
 The output from mcsph is an approximation of Pi/6
 based on a Monte Carlo simulation of a 1/8 sphere.
 in a unit cube.  The formula is x^2 + y^2 + z^2 < 1.
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/10 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -86,9 +107,9 @@ There are no parameters.
 The output from mcparab is an approximation of 1/3
 based on a Monte Carlo simulation of the area under a curve
 in a unit square.  The formula for the curve is y=x^2.
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/10 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -101,9 +122,9 @@ The output from mcbell is an approximate z-score of 0.3413
 based on a Monte Carlo simulation of the area under a normal
 bell curve in a unit square.  The formula for the curve is
 y=k*e^(-0.5*x^2) where k is 1/sqrt(2pi).
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/5 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -115,9 +136,9 @@ There are no parameters.
 The output from mcsin is approximately 2.0 based on a
 Monte Carlo simulation of the area under a sine curve
 in a 1 x pi square.  The formula for the curve is y=sin(x).
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/5 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -130,9 +151,9 @@ The output from mcsin is approximately Pi based on a
 Monte Carlo simulation of the area under a cosine curve
 in a 2 x pi square raised above the x axis.
 The formula for the curve is y=cos(x) + 1.
-etaus is compared with GSL Mersenne Twister, mt19937,
+ekiss is compared with GSL Mersenne Twister, mt19937,
 and GSL ranlxd2.  ranlxd2 runs at 1/5 the speed of
-etaus.  n = 1 million.  Expected error is 1/1000.
+ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
@@ -189,19 +210,19 @@ as input to a test.
 
 ------------------------------------------------------
 
-Test etausint() by running etauspat.
+Test ekissint() by running ekisspat.
 This test requires the new curses package.
 
 sudo apt-get install libncurses-dev
 
-./etauspat
+./ekisspat
 
-The output from etauspat is a random pattern of ASCII characters
+The output from ekisspat is a random pattern of ASCII characters
 on a curses screen.  To quit press 'q'.
 
 ------------------------------------------------------
 
-Test etauspwr() by running tstdots.
+Test ekisspwr() by running tstdots.
 This test requires X Windows.
 
 sudo apt-get install libx11-dev
@@ -289,18 +310,18 @@ The first test takes a half minute to print a report.
 
 ------------------------------------------------------
 
-TestU01 is more difficult to run with the etaus generator.
+TestU01 is more difficult to run with the ekiss generator.
 You have to download the TestU01 package and then compile it.
 Then you have to write and compile a test program in the
 examples directory of TestU01.  The short guide for TestU01
 gives you examples of how to set up a test.  In particular,
-you need to use ufile to read input from etausraw in your test.
+you need to use ufile to read input from ekissraw in your test.
 After you get over the learning curve, you will be rewarded
 with some strong and varied tests.
 
 ------------------------------------------------------
 
-Test an encryption program using the etaus random
+Test an encryption program using the ekiss random
 number generator to encrypt data.
 
 The following test does double encryption to obtain the
@@ -365,381 +386,8 @@ This is a long running test.  Press CTL-C to interrupt it.
 
 ------------------------------------------------------
 
-Read README.etaus for general information about the etaus
+Read README.ekiss for general information about the ekiss
 random number generator.
-Read INSTALL for installing the etaus package.
-The website for etaus is at https://aquila62.github.io.
-
-]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-The visual and amusement tests, included here, do not occur
-in dieharder or TestU01.  Dieharder and TestU01 are statistical
-test suites.  To test elcg with dieharder or TestU01, feed
-the output from elcgraw into those test suites.
-
-------------------------------------------------------
-
-Test elcg by running tstelcg.  There are no parameters.
-
-./tstelcg
-
-The output from tstelcg is a block of 1000 random zeros
-and ones.
-
-------------------------------------------------------
-
-Uniform distribution chi square test.
-There are no parameters.
-
-./elcgchi
-
-The output from elcgchi is a chi square of 65536
-4-bit samples.  The number of degrees of freedom is 15.
-The chi square is computed for 4 bits as output from
-elcgpwr().
-
-------------------------------------------------------
-
-Second uniform distribution chi square test.
-The unsigned integer from elcg() is tested in
-4-bit groups.
-     Bits
-    29-32
-    25-28
-    21-24
-    17-20
-    13-16
-     9-12
-     5-8
-     1-4
-
-There are no parameters.
-Usage:
-
-./uintchi | less
-
-The output from uintchi for each group of 4 bits
-is a chi square of 65536 4-bit samples.  Number of
-degrees of freedom is 15.
-
-------------------------------------------------------
-
-Monte Carlo calculation of Pi/4.
-There are no parameters.
-
-./mcpi
-
-The output from mcpi is an approximation of Pi/4
-based on a Monte Carlo simulation of a quarter circle
-in a unit square.  The formula is x^2 + y^2 < 1.
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Monte Carlo calculation of Pi/6.
-There are no parameters.
-
-./mcsph
-
-The output from mcsph is an approximation of Pi/6
-based on a Monte Carlo simulation of a 1/8 sphere.
-in a unit cube.  The formula is x^2 + y^2 + z^2 < 1.
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Monte Carlo Definite Integral of y=x^2.
-There are no parameters.
-
-./mcparab
-
-The output from mcparab is an approximation of 1/3
-based on a Monte Carlo simulation of the area under a curve
-in a unit square.  The formula for the curve is y=x^2.
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Monte Carlo Definite Integral of a normal bell curve.
-There are no parameters.
-
-./mcbell
-
-The output from mcbell is an approximate z-score of 0.3413
-based on a Monte Carlo simulation of the area under a normal
-bell curve in a unit square.  The formula for the curve is
-y=k*e^(-0.5*x^2) where k is 1/sqrt(2pi).
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Monte Carlo Definite Integral of sin(x).
-There are no parameters.
-
-./mcsin
-
-The output from mcsin is approximately 2.0 based on a
-Monte Carlo simulation of the area under a sine curve
-in a 1 x pi square.  The formula for the curve is y=sin(x).
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Monte Carlo Definite Integral of cos(x).
-There are no parameters.
-
-./mccos
-
-The output from mcsin is approximately Pi based on a
-Monte Carlo simulation of the area under a cosine curve
-in a 2 x pi square raised above the x axis.
-The formula for the curve is y=cos(x) + 1.
-elcg is compared with GSL taus2, GSL Mersenne Twister
-(mt19937), and GSL ranlxd2.  ranlxd2 runs at 1/10 the
-speed of elcg.  n = 1 million.  Expected error is 1/1000.
-
-------------------------------------------------------
-
-Binomial distribution chi square test.
-There are no parameters.
-
-./binom
-
-The output from binom is a chi square of 65536
-16-bit samples.  Number of degrees of freedom is 16.
-This test uses Pascal's Triangle for calculating
-expected probabilities.
-
-------------------------------------------------------
-
-Poisson distribution chi square test.
-There are two parameters, lambda and size of population.
-
-./poischi lambda size
-
-Example:
-
-./poischi 6 100000
-
-The output from poischi is the chi square, with
-number of degrees of freedom based on lambda.
-
-------------------------------------------------------
-
-The Anderson-Darling test for a normal distribution is
-included only as an example in this repository, because
-it requires a statistical package, like R and the nortest
-library.
-
-To test elcgnorm, run the script tstnorm.sh.
-
-Usage:
-
-./tstnorm.sh
-
-Program elcgnorm generates data in a normal distribution
-using the Box-Muller transform.
-
-The following is the syntax for program elcgnorm.
-
-Usage:
-./elcgnorm mean stdev size
-
-Example:
-./elcgnorm 15.0 2.0 5000
-
-The R package requires an upper limit of 5000 numbers
-as input to a test.
-
-------------------------------------------------------
-
-Test elcgint() by running elcgpat.
-This test requires the new curses package.
-
-sudo apt-get install libncurses-dev
-
-./elcgpat
-
-The output from elcgpat is a random pattern of ASCII characters
-on a curses screen.  To quit press 'q'.
-
-------------------------------------------------------
-
-Test elcgpwr() by running tstdots.
-This test requires X Windows.
-
-sudo apt-get install libx11-dev
-
-./tstdots
-
-The output from tstdots is a random bitmap pattern of pixels 
-on an X Windows screen, 512x512.  To quit press 'q'.
-
-------------------------------------------------------
-
-Random Walk Test:  ranwlk
-This test requires X Windows.  See sudo apt-get above.
-
-./tstwlk.sh
-
-The output from tstwlk.sh is a random walk relative to a
-midpoint line on an X Windows screen.  To quit press any key.
-
-------------------------------------------------------
-
-Captcha generator with random background and partially
-random text colors.
-
-Requires the Netpbm package.
-
-sudo apt-get netpbm
-
-Usage:
-
-echo "text" | captcha | pnmtopng >mycaptcha.png
-
-Uses font.txt 12x24 font file.
-
-------------------------------------------------------
-
-Generate a stream of random DNA base pairs.
-Display the DNA base pairs as parallel strands.
-
-Usage:
-
-gendna | pair | less
-
-The output looks like:
-
-AGAAAGAGCAAGGATGAAAACGCGTATATTAGTGAGAATCTGGTACGTGTTTCGGTACGCGTTCCCAAGAGG
-TCTTTCTCGTTCCTACTTTTGCGCATATAATCACTCTTAGACCATGCACAAAGCCATGCGCAAGGGTTCTCC
---------
-TAGTTGGTGCTAATGGCTACCATAATATATTGTTGTTCTGCCGGTAGATATCCCCGCTGCCGGGCCTGCGCG
-ATCAACCACGATTACCGATGGTATTATATAACAACAAGACGGCCATCTATAGGGGCGACGGCCCGGACGCGC
---------
-
-A pairs with T, G pairs with C, etc.
-
-------------------------------------------------------
-
-Random Powerball Simulation:  pwrball
-pwrball is a random lottery game based on real odds
-and real pay-outs.  The jackpot is $1 Billion.
-This test requires new curses.  See apt-get above.
-
-./pwrball
-
-The output from pwrball shows money spent and money
-received for each prize level.  To quit press 'q'.
-The grand totals are in millions of dollars.
-The lesser prizes are in thousands of dollars.
-
-------------------------------------------------------
-
-Raw Dieharder Test:  tstdie.sh
-Dieharder has to be installed first.
-
-sudo apt-get install libdieharder-dev
-sudo apt-get install dieharder
-
-tstdie.sh illustrates how a raw stream of random data is piped
-into a down stream test suite.
-
-./tstdie.sh
-
-The output from tstdie.sh is a summary report.
-This is a long running test.  To interrupt press CTRL-C.
-The first test takes a half minute to print a report.
-
-------------------------------------------------------
-
-TestU01 is more difficult to run with the elcg generator.
-You have to download the TestU01 package and then compile it.
-Then you have to write and compile a test program in the
-examples directory of TestU01.  The short guide for TestU01
-gives you examples of how to set up a test.  In particular,
-you need to use ufile to read input from elcgraw in your test.
-After you get over the learning curve, you will be rewarded
-with some strong and varied tests.
-
-------------------------------------------------------
-
-Test an encryption program using the elcg random
-number generator to encrypt data.
-
-The following test does double encryption to obtain the
-original stream of data.
-
-Usage:
-
-tstencr.sh filename password
-
-Example:
-
-tstencr.sh /vmlinuz abcdef
-
-The output shows two identical md5sum strings.
-
-----
-
-Use an alpha text generator for testing the encryption.
-The encryption algorithm is validated with two dieharder
-tests.  The first test passes with encryption.  The second
-test fails without encryption.
-
-The following test proves that a non-random plain text file
-can be enhanced with encryption to pass statistical
-tests for randomness.
-
-Usage:
-
-tstdiee.sh alphabet password
-
-Examples:
-
-tstdiee.sh "abc" "defghi"
-tstdiee.sh abc defghi
-
-The output is a dieharder summary report.
-It should show mostly successes with only a couple
-of WEAK results.
-
-This is a long running test.  Press CTL-C to interrupt it.
-
-----
-
-This test shows that a plain text stream of data fails
-a battery of tests for randomness.
-
-Usage:
-
-tstdiea.sh alphabet
-
-Examples:
-
-tstdiee.sh "abc"
-tstdiee.sh abc
-tstdiee.sh abcdefghijklmnopqrstuvwxyz
-tstdiee.sh 0123456789
-
-The output is a dieharder summary report.  It should show
-almost all failures.
-
-This is a long running test.  Press CTL-C to interrupt it.
-
-------------------------------------------------------
-
-Read README.elcg for general information about the elcg
-random number generator.
-Read INSTALL for installing the elcg package.
-The website for elcg is at https://aquila62.github.io.
+Read INSTALL for installing the ekiss package.
+The website for ekiss is at https://aquila62.github.io.
 

@@ -20,6 +20,7 @@ make -f mcsph.mak
 make -f pair.mak
 make -f poischi.mak
 make -f pwrball.mak
+make -f qmatch.mak
 make -f ranwlk.mak
 make -f tstekiss.mak
 make -f uintchi.mak

@@ -29,6 +29,11 @@ then the period length is at least as long as the test.  If the test
 fails, then increase the size of the key to three successive overlapping
 generations of ekiss output, and rerun the test.
 
+Another way to test the period length is to run the qmatch program
+in this repository.  qmatch compares 1024 successive outputs of eegl
+to an original list of 1024 successive outputs.  99.9999999% of the
+time, the comparison fails on the first node in the list.
+
 Test results.
 
 The ekiss random number generator has tested successfully in the
