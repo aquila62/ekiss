@@ -123,6 +123,28 @@ unsigned int deque(qfmt *head)
    return(outpt);
    } /* deque */
 
+/**********************************************************************/
+/* Dequeue the least recent output from the head, then enqueue a new  */
+/* node at the tail of a FIFO queue with the most recent output.      */
+/* Use the same node for both dequeue and enqueue.                    */
+/**********************************************************************/
+void deqenq(qfmt *head, qfmt *tail, unsigned int outpt)
+   {
+   qfmt *node;
+   node = head->prev;
+   head->prev = node->prev;
+   node->prev->next = head;
+   /* Now place the same node at the tail of the FIFO queue */
+   /* with the most recent output from the RNG */
+   node->next = tail->next;
+   tail->next = node;
+   node->next->prev = node;
+   node->prev = tail;
+   /* The outpt parameter is the output of the most recent */
+   /* eegl random number generator cycle */
+   node->outpt = outpt;
+   } /* deqenq */
+
 /****************************************************************/
 /* Free every node in a FIFO queue.                             */
 /****************************************************************/
@@ -205,8 +227,7 @@ int main()
       /* dequeue from the head of the queue                 */
       /* enqueue at the tail of the queue                   */
       /******************************************************/
-      deque(head);
-      enque(tail,outpt);
+      deqenq(head, tail, outpt);
       diff = 0;
       currnode = head->prev;
       orignode = orighead->prev;
