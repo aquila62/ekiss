@@ -157,6 +157,25 @@ ekiss.  n = 1 million.  Expected error is 1/1000.
 
 ------------------------------------------------------
 
+Test a simple Markov Chain by running mchain.
+
+This program uses new curses.
+See installation of new curses below under eeglpat.
+
+There are no parameters.
+
+./mchain
+
+The output is a display of two nodes.  An empty node
+has an underline mark.  An occupied node starts with
+the letter 'A' and increases up to 'Z' for each outcome
+to itself.  The program pauses one second between each
+event.  Each event has a probability of 50%.
+
+Press 'q' to quit the program.
+
+------------------------------------------------------
+
 Binomial distribution chi square test.
 There are no parameters.
 

@@ -13,6 +13,7 @@ make -f genalfa.mak clean
 make -f gendna.mak clean
 make -f mcbell.mak clean
 make -f mccos.mak clean
+make -f mchain.mak clean
 make -f mcparab.mak clean
 make -f mcpi.mak clean
 make -f mcsin.mak clean
