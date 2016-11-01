@@ -160,7 +160,7 @@ ekiss.  n = 1 million.  Expected error is 1/1000.
 Test a simple Markov Chain by running mchain.
 
 This program uses new curses.
-See installation of new curses below under eeglpat.
+See installation of new curses below under ekisspat.
 
 There are no parameters.
 
@@ -207,22 +207,22 @@ included only as an example in this repository, because
 it requires a statistical package, like R and the nortest
 library.
 
-To test elcgnorm, run the script tstnorm.sh.
+To test ekissnorm, run the script tstnorm.sh.
 
 Usage:
 
 ./tstnorm.sh
 
-Program elcgnorm generates data in a normal distribution
+Program ekissnorm generates data in a normal distribution
 using the Box-Muller transform.
 
-The following is the syntax for program elcgnorm.
+The following is the syntax for program ekissnorm.
 
 Usage:
-./elcgnorm mean stdev size
+./ekissnorm mean stdev size
 
 Example:
-./elcgnorm 15.0 2.0 5000
+./ekissnorm 15.0 2.0 5000
 
 The R package requires an upper limit of 5000 numbers
 as input to a test.

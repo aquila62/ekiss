@@ -20,7 +20,7 @@
 #     59 Temple Place - Suite 330
 #     Boston, MA  02111-1307, USA.
 
-# See the eeglgen.c program for generating an input stream
+# See the ekissgen.c program for generating an input stream
 # Test with the tstwlk.sh script
 
 OBJ=ranwlk.o

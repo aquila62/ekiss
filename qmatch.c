@@ -141,7 +141,7 @@ void deqenq(qfmt *head, qfmt *tail, unsigned int outpt)
    node->next->prev = node;
    node->prev = tail;
    /* The outpt parameter is the output of the most recent */
-   /* eegl random number generator cycle */
+   /* ekiss random number generator cycle */
    node->outpt = outpt;
    } /* deqenq */
 
